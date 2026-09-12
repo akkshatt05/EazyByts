@@ -9,7 +9,8 @@ import {
   Trophy,
   FileText,
   MessageSquare,
-  Palette,
+  Settings,
+  Mail,
   LogOut,
   ArrowUpRight,
 } from "lucide-react";
@@ -96,9 +97,7 @@ function Dashboard() {
     }
 
     setLoggingOut(true);
-
     localStorage.removeItem("token");
-
     navigate("/");
   };
 
@@ -111,29 +110,20 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-
-      {/* =========================
-          SIDEBAR
-      ========================= */}
       <aside className="sidebar">
-
         <div className="sidebar-brand">
           <div className="sidebar-brand-icon">
             <LayoutDashboard size={18} />
           </div>
 
           <div>
-            <h2>Portfolio CMS</h2>
-            <span>Admin Panel</span>
+            <h2>Admin Panel</h2>
           </div>
         </div>
 
-        <div className="sidebar-section-label">
-          MANAGEMENT
-        </div>
+        <div className="sidebar-section-label">MANAGEMENT</div>
 
         <nav>
-
           <div
             className="nav-item active"
             onClick={() => navigate("/dashboard")}
@@ -190,24 +180,28 @@ function Dashboard() {
             <span>Messages</span>
 
             {messageCount > 0 && (
-              <span className="sidebar-badge">
-                {messageCount}
-              </span>
+              <span className="sidebar-badge">{messageCount}</span>
             )}
+          </div>
+
+          <div
+            className="nav-item"
+            onClick={() => navigate("/theme-settings")}
+          >
+            <Settings size={18} />
+            <span>Theme Settings</span>
           </div>
 
           <div
             className="nav-item"
             onClick={() => navigate("/contact")}
           >
-            <span className="sidebar-contact-icon">✉</span>
+            <Mail size={18} />
             <span>Contact</span>
           </div>
-
         </nav>
 
         <div className="sidebar-footer">
-
           <div
             className={`nav-item logout-item ${
               loggingOut ? "logging-out" : ""
@@ -215,27 +209,15 @@ function Dashboard() {
             onClick={loggingOut ? undefined : handleLogout}
           >
             <LogOut size={18} />
-            <span>
-              {loggingOut ? "Logging out..." : "Logout"}
-            </span>
+            <span>{loggingOut ? "Logging out..." : "Logout"}</span>
           </div>
-
         </div>
-
       </aside>
 
-      {/* =========================
-          MAIN CONTENT
-      ========================= */}
       <main className="dashboard-content">
-
-        {/* Header */}
         <div className="dashboard-header">
-
           <div className="dashboard-heading">
-            <span className="dashboard-eyebrow">
-              ADMIN OVERVIEW
-            </span>
+            <span className="dashboard-eyebrow">ADMIN OVERVIEW</span>
 
             <h1>Dashboard</h1>
 
@@ -245,36 +227,24 @@ function Dashboard() {
           </div>
 
           <div className="admin-profile">
-            <div className="admin-avatar">
-              A
-            </div>
+            <div className="admin-avatar">A</div>
 
             <div className="admin-info">
               <strong>Admin</strong>
               <span>Administrator</span>
             </div>
           </div>
-
         </div>
 
-        {/* =========================
-            STATISTICS
-        ========================= */}
         <section className="dashboard-section">
-
           <div className="dashboard-section-heading">
             <div>
-              <span className="dashboard-section-label">
-                CONTENT
-              </span>
-
+              <span className="dashboard-section-label">CONTENT</span>
               <h2>Portfolio Overview</h2>
             </div>
           </div>
 
           <div className="stats-container">
-
-            {/* Projects */}
             <div
               className="stat-card stat-projects stat-card-clickable"
               role="button"
@@ -288,12 +258,10 @@ function Dashboard() {
                 <div className="stat-icon">
                   <FolderKanban size={21} />
                 </div>
-
                 <ArrowUpRight size={17} />
               </div>
 
               <h3>Total Projects</h3>
-
               <strong>{projectCount}</strong>
 
               <span className="stat-description">
@@ -301,7 +269,6 @@ function Dashboard() {
               </span>
             </div>
 
-            {/* Skills */}
             <div
               className="stat-card stat-skills stat-card-clickable"
               role="button"
@@ -315,12 +282,10 @@ function Dashboard() {
                 <div className="stat-icon">
                   <Wrench size={21} />
                 </div>
-
                 <ArrowUpRight size={17} />
               </div>
 
               <h3>Total Skills</h3>
-
               <strong>{skillCount}</strong>
 
               <span className="stat-description">
@@ -328,7 +293,6 @@ function Dashboard() {
               </span>
             </div>
 
-            {/* Blog */}
             <div
               className="stat-card stat-posts stat-card-clickable"
               role="button"
@@ -342,20 +306,15 @@ function Dashboard() {
                 <div className="stat-icon">
                   <FileText size={21} />
                 </div>
-
                 <ArrowUpRight size={17} />
               </div>
 
               <h3>Total Blog Posts</h3>
-
               <strong>{postCount}</strong>
 
-              <span className="stat-description">
-                Published content
-              </span>
+              <span className="stat-description">All blog posts</span>
             </div>
 
-            {/* Achievements */}
             <div
               className="stat-card stat-achievements stat-card-clickable"
               role="button"
@@ -369,12 +328,10 @@ function Dashboard() {
                 <div className="stat-icon">
                   <Trophy size={21} />
                 </div>
-
                 <ArrowUpRight size={17} />
               </div>
 
               <h3>Achievements</h3>
-
               <strong>{achievementCount}</strong>
 
               <span className="stat-description">
@@ -382,7 +339,6 @@ function Dashboard() {
               </span>
             </div>
 
-            {/* Messages */}
             <div
               className="stat-card stat-messages stat-card-clickable"
               role="button"
@@ -396,41 +352,28 @@ function Dashboard() {
                 <div className="stat-icon">
                   <MessageSquare size={21} />
                 </div>
-
                 <ArrowUpRight size={17} />
               </div>
 
               <h3>Messages</h3>
-
               <strong>{messageCount}</strong>
 
               <span className="stat-description">
                 Contact enquiries
               </span>
             </div>
-
           </div>
-
         </section>
 
-        {/* =========================
-            QUICK ACTIONS
-        ========================= */}
         <section className="quick-actions">
-
           <div className="dashboard-section-heading">
             <div>
-              <span className="dashboard-section-label">
-                SHORTCUTS
-              </span>
-
+              <span className="dashboard-section-label">SHORTCUTS</span>
               <h2>Quick Actions</h2>
             </div>
           </div>
 
           <div className="action-grid">
-
-            {/* Edit Profile */}
             <button
               type="button"
               className="action-card"
@@ -442,9 +385,7 @@ function Dashboard() {
 
               <div className="action-card-content">
                 <strong>Edit Profile</strong>
-                <span>
-                  Update your personal information
-                </span>
+                <span>Update your personal information</span>
               </div>
 
               <ArrowUpRight
@@ -453,7 +394,6 @@ function Dashboard() {
               />
             </button>
 
-            {/* Manage Projects */}
             <button
               type="button"
               className="action-card"
@@ -465,9 +405,7 @@ function Dashboard() {
 
               <div className="action-card-content">
                 <strong>Manage Projects</strong>
-                <span>
-                  Add, edit or delete projects
-                </span>
+                <span>Add, edit or delete projects</span>
               </div>
 
               <ArrowUpRight
@@ -476,7 +414,6 @@ function Dashboard() {
               />
             </button>
 
-            {/* Write Blog */}
             <button
               type="button"
               className="action-card"
@@ -488,9 +425,7 @@ function Dashboard() {
 
               <div className="action-card-content">
                 <strong>Write Blog</strong>
-                <span>
-                  Create a new blog post
-                </span>
+                <span>Create a new blog post</span>
               </div>
 
               <ArrowUpRight
@@ -499,7 +434,6 @@ function Dashboard() {
               />
             </button>
 
-            {/* View Messages */}
             <button
               type="button"
               className="action-card"
@@ -511,9 +445,7 @@ function Dashboard() {
 
               <div className="action-card-content">
                 <strong>View Messages</strong>
-                <span>
-                  Read your contact enquiries
-                </span>
+                <span>Read your contact enquiries</span>
               </div>
 
               <ArrowUpRight
@@ -521,36 +453,9 @@ function Dashboard() {
                 className="action-card-arrow"
               />
             </button>
-
-            {/* Theme Settings */}
-            <button
-              type="button"
-              className="action-card"
-              onClick={() => navigate("/theme-settings")}
-            >
-              <div className="action-card-icon">
-                <Palette size={21} />
-              </div>
-
-              <div className="action-card-content">
-                <strong>Theme Settings</strong>
-                <span>
-                  Customize colors and style
-                </span>
-              </div>
-
-              <ArrowUpRight
-                size={17}
-                className="action-card-arrow"
-              />
-            </button>
-
           </div>
-
         </section>
-
       </main>
-
     </div>
   );
 }
